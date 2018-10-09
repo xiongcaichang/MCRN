@@ -1,4 +1,7 @@
 import { NavigationActions } from 'react-navigation';
+var { NativeModules } = require('react-native');
+
+const log =  NativeModules.UMAnalyticsModule;
 
 
 function getRouteName(navigationState) {
@@ -23,8 +26,8 @@ const screenTracking = ({ getState }) => next => (action) => {
   const result = next(action);
   const nextScreen = getRouteName(getState().nav);
   if (nextScreen !== currentScreen) {
-    
-
+    // 象征性的用友盟对接一下
+    log&&log.onEventWithLabel("route",nextScreen);
   }
   return result;
 };

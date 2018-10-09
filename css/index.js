@@ -5,9 +5,10 @@
  * @version $Id$
  */
 import { Platform } from 'react-native';
+import css from 'MCConfig/Css';
 import {isIOS, isIphoneX, onePixel, DEVICE_WIDTH, DEVICE_HEIGHT } from '../device';
 
-export const topHeight = Platform.OS === 'ios' ? (isIphoneX ? 44 : 20) : 20;
+export const topHeight = Platform.OS === 'ios' ? (isIphoneX ? 44 : 20) : 0;
 export const bottomHeight = isIphoneX ? 34 : 0;
 export const pageCardHeight = DEVICE_HEIGHT - topHeight - 20;
 export const pageCommonHeight = DEVICE_HEIGHT - topHeight;
@@ -120,6 +121,7 @@ export default {
   '$DEVICE_WIDTH':DEVICE_WIDTH,
   '$DEVICE_HEIGHT':DEVICE_HEIGHT,
   '$rem': DEVICE_WIDTH >= 414 ? 18 : (DEVICE_WIDTH <= 320 ? 14 : 16),  // 也可以和现在一样根据屏幕适配，iPhone8对应16
-  '$topBarHeight': topHeight
+  '$topBarHeight': topHeight,
+  ...css,
 };
 
